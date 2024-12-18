@@ -97,7 +97,7 @@ RUN apt-get install -y \
     webots \
     ros-foxy-webots-ros2 \
     ros-noetic-webots-ros
-ENV WEBOTS_HOME=/home/rosuser/webots
+ENV WEBOTS_HOME=/usr/local/webots
 
 # ros-noetic-desktop-full \
 # ros-noetic-gazebo-plugins \
