@@ -89,7 +89,7 @@ RUN apt-get install -y \
     ros-noetic-tf2-tools \
     ros-foxy-ros-base \
     ros-foxy-sensor-msgs \
-    ros-foxy-tf2-toosl \
+    ros-foxy-tf2-tools \
     python3-pip \
     python3-rosdep \
     python3-colcon-common-extensions \
