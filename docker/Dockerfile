@@ -141,9 +141,9 @@ RUN rosdep update --rosdistro foxy
 # Build Webots World
 # =============================================================================
 COPY maps/ /home/rosuser/maps/
-RUN python3 /home/rosuser/webots/resources/importer.py \
-    --input=map-waurnponds.osm \
-    --output=map-waurnponds.wbt
+# RUN python3 /home/rosuser/webots/resources/importer.py \
+#     --input=map-waurnponds.osm \
+#     --output=map-waurnponds.wbt
 
 
 # =============================================================================
