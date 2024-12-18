@@ -95,7 +95,8 @@ RUN apt-get install -y \
     python3-colcon-common-extensions \
     python3-catkin-tools \
     webots \
-    ros-foxy-webots-ros2
+    ros-foxy-webots-ros2 \
+    ros-noetic-webots-ros
 ENV WEBOTS_HOME=/home/rosuser/webots
 
 # ros-noetic-desktop-full \
@@ -141,16 +142,16 @@ RUN rosdep update --rosdistro foxy
 # Build Webots World
 # =============================================================================
 COPY maps/ /home/rosuser/maps/
-# RUN python3 /home/rosuser/webots/resources/importer.py \
-#     --input=map-waurnponds.osm \
-#     --output=map-waurnponds.wbt
+RUN python3 /usr/local/webots/resources/osm_importer/importer.py \
+    --input=/home/rosuser/maps/map-waurnponds.osm \
+    --output=/home/rosuser/maps/map-waurnponds.wbt
 
 
 # =============================================================================
 # Set Default User
 # =============================================================================
-USER rosuser
 WORKDIR /home/rosuser/
+USER rosuser
 
 
 # =============================================================================
