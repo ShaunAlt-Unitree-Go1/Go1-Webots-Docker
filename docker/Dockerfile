@@ -70,7 +70,7 @@ RUN bash -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/k
 # Webots Keys
 WORKDIR /etc/apt/keyrings/
 RUN wget -q https://cyberbotics.com/Cyberbotics.asc
-RUN echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
+RUN echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | tee /etc/apt/sources.list.d/Cyberbotics.list
 
 
 # =============================================================================
