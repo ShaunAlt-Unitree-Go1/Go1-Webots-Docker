@@ -132,6 +132,7 @@ WORKDIR /home/rosuser
 # =============================================================================
 # Updating ROS Dependencies
 # =============================================================================
+RUN rosdep init
 RUN rosdep update --rosdistro noetic
 RUN rosdep update --rosdistro foxy
 
