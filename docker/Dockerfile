@@ -40,6 +40,7 @@ RUN apt-get install -y \
     dirmngr \
     gnupg2 \
     curl \
+    wget \
     lsb-release \
     git \
     build-essential \
