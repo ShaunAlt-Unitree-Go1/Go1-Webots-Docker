@@ -105,8 +105,8 @@ ENV WEBOTS_HOME=/home/rosuser/webots
 # =============================================================================
 # Install Python Packages
 # =============================================================================
-RUN python3 -m pip install --upgrade pip --noinput
-RUN python3 -m pip install --noinput \
+RUN python3 -m pip install --upgrade pip --no-input
+RUN python3 -m pip install --no-input \
     lxml \
     pyproj \
     shapely \
