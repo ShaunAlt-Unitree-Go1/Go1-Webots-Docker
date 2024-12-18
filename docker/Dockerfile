@@ -28,7 +28,7 @@ ENV LIBGL_ALWAYS_SOFTWARE=1
 # =============================================================================
 # Update Debian Packages
 # =============================================================================
-RUN apt-get update -y
+RUN apt-get update
 RUN apt-get upgrade -y
 
 
@@ -45,7 +45,10 @@ RUN apt-get install -y \
     build-essential \
     mesa-utils \
     libgl1-mesa-glx \
-    libgl1-mesa-dri
+    libgl1-mesa-dri \
+    ffmpeg \
+    libavcodec-extra \
+    ubuntu-restricted-extras
 
 
 # =============================================================================
@@ -62,11 +65,17 @@ RUN bash -c 'curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.
 RUN bash -c 'curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg'
 RUN bash -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null'
 
+# ===========
+# Webots Keys
+WORKDIR /etc/apt/keyrings/
+RUN wget -q https://cyberbotics.com/Cyberbotics.asc
+RUN echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
+
 
 # =============================================================================
 # Update + Upgrade Debian Packages
 # =============================================================================
-RUN apt-get update -y
+RUN apt-get update
 RUN apt-get upgrade -y
 
 
@@ -84,7 +93,9 @@ RUN apt-get install -y \
     python3-rosdep \
     python3-colcon-common-extensions \
     python3-catkin-tools \
+    webots \
     ros-foxy-webots-ros2
+ENV WEBOTS_HOME=/home/rosuser/webots
 
 # ros-noetic-desktop-full \
 # ros-noetic-gazebo-plugins \
@@ -122,14 +133,6 @@ WORKDIR /home/rosuser
 # =============================================================================
 RUN rosdep update --rosdistro noetic
 RUN rosdep update --rosdistro foxy
-
-
-# =============================================================================
-# Install Webots from .deb
-# =============================================================================
-COPY packages/ /home/rosuser/packages/
-RUN apt install /home/rosuser/packages/webots_2023b_amd64.deb
-ENV WEBOTS_HOME=/home/rosuser/webots
 
 
 # =============================================================================
